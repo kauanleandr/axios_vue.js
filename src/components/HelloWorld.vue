@@ -84,6 +84,9 @@ export default {
   display: block;
   margin: 0 auto;
   max-width: 100%;
+  max-width: 200px;
+  height: auto;
+  text-align: center
 }
 
 
@@ -94,33 +97,25 @@ h1 {
 .button1 {
   text-align: center;
   margin-bottom: 20px;
+  
 }
-
-.imagemkkk{
-  max-width: 200px;
-  height: auto;
-  text-align: center
-}
-
 button {
   font-size: 16px;
   padding: 10px 20px;
   margin-bottom: 10px;
 
 }
-.button1 {
-  margin-bottom: 20px;
-}
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 0 auto;
-  text-align: center;
-}
 
 .table td {
   border: 1px solid #ddd;
   padding: 8px;
   color: black;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  text-align: center;
 }
 </style>
