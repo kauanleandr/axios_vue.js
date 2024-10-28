@@ -1,13 +1,23 @@
 <template>
 <h1>Dados em axios</h1>
+
 <div class="button1">
-  <button @click="axiosDados">CLICA LEGAL DOG</button>
+  <button @click="axiosDados">CARREGAR DADOS</button>
 </div>
+
+<div class="button1">
+  <button @click="axiosAdicionar">ADICIONAR DADOS</button>
+</div>
+
+<div class="button1">
+  <button @click="axiosFechar">FECHAR DADOS</button>
+</div>
+
 <table class="table">
 
 <tbody>
   <tr v-for="item in items" :key="item.id">
-      <td>{{ item.user_id }}</td>
+      <td>{{ item.id }}</td>
       <td>{{ item.title }}</td>
       <td>{{ item.body }}</td>
   </tr>
@@ -29,14 +39,39 @@ export default {
     };
   },
   methods: {
+
+    async axiosAdicionar(){
+      try {
+    const response = await axios.post('https://jsonplaceholder.typicode.com/posts', {
+      id: '',
+      user_id: '21324',
+      title: 'quaerat velit veniam amet cupiditate aut numquam ut sequi, consequuntur deleniti eos quia temporibus ab aliquid at',
+      body: 'voluptatem cumque tenetur consequatur expedita ipsum nemo quia explicabo aut eum minima consequatur tempore cumque quae est et et in consequuntur voluptatem voluptates aut, odit qui et et necessitatibus sint veniam mollitia amet doloremque molestiae commodi similique magnam et quam blanditiis est itaque quo et tenetur ratione occaecati molestiae tempora',
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer SEU_TOKEN_AQUI' 
+      }
+    });
+        const newItem = response.data;
+        this.items.push(newItem);
+        console.log('atualizando dados', this.items);
+      } catch(error) {
+        console.error('erro ao carregar dados', error)
+      }
+    },
+
     async axiosDados(){
       try{
-        const response = await axios.get ('https://gorest.co.in/public/v2/posts');
+        const response = await axios.get ('https://jsonplaceholder.typicode.com/posts');
         this.items = response.data;
         console.log(this.items);
       } catch (error) {
         console.error('Erro ao buscar os dados', error);
       }
+    },
+    axiosFechar(){
+      this.items = [];
     }
   }
 }
